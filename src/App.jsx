@@ -3,7 +3,7 @@ import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
 import UserListPage from "./pages/UserListPage";
 import "./styles/auth.css";
-import "./styles/userList.css";
+import "./styles/userlist.css";
 
 function App() {
   return (
