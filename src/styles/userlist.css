@@ -219,11 +219,12 @@ body {
   background: #fff;
   padding: 36px 28px;
   border-radius: 12px;
-  min-width: 340px;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.12);
-  max-width: 420px;
+  min-width: 320px;
+  max-width: 95vw; 
   width: 100%;
+  box-sizing: border-box; 
   position: relative;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.12);
 }
 .modal h3 {
   margin-top: 0;
@@ -241,6 +242,7 @@ body {
 }
 .modal input {
   width: 100%;
+  box-sizing: border-box; 
   margin-top: 6px;
   margin-bottom: 0;
   padding: 12px 14px;
@@ -249,6 +251,7 @@ body {
   font-size: 1rem;
   background: #f8fafc;
   font-weight: 400;
+  min-width: 0; 
 }
 .modal input::placeholder {
   color: #bdbdbd;

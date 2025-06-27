@@ -1,45 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setUsers, addUser, updateUser, deleteUser } from "../store";
-
-
-const initialUsers = [
-  {
-    id: 1,
-    avatar: "https://reqres.in/img/faces/1-image.jpg",
-    email: "george.bluth@reqres.in",
-    first_name: "George",
-    last_name: "Bluth"
-  },
-  {
-    id: 2,
-    avatar: "https://reqres.in/img/faces/2-image.jpg",
-    email: "janet.weaver@reqres.in",
-    first_name: "Janet",
-    last_name: "Weaver"
-  },
-  {
-    id: 3,
-    avatar: "https://reqres.in/img/faces/3-image.jpg",
-    email: "emma.wong@reqres.in",
-    first_name: "Emma",
-    last_name: "Wong"
-  },
-  {
-    id: 4,
-    avatar: "https://reqres.in/img/faces/4-image.jpg",
-    email: "eve.holt@reqres.in",
-    first_name: "Eve",
-    last_name: "Holt"
-  },
-  {
-    id: 5,
-    avatar: "https://reqres.in/img/faces/5-image.jpg",
-    email: "charles.morris@reqres.in",
-    first_name: "Charles",
-    last_name: "Morris"
-  }
-];
 
 function UserListPage() {
   const users = useSelector(state => state.users);
@@ -63,7 +23,6 @@ function UserListPage() {
   useEffect(() => {
     setLoading(true);
     dispatch({ type: "users/FETCH_USERS" });
-    // Simulate loading for demo, remove in production if you handle loading in saga
     const timer = setTimeout(() => setLoading(false), 800);
     return () => clearTimeout(timer);
   }, [dispatch]);
@@ -107,14 +66,9 @@ function UserListPage() {
     if (!form.first_name || !form.last_name || !form.email || !form.avatar) return;
 
     if (modalMode === "create") {
-      dispatch({ type: "users/ADD_USER_SAGA", payload: {
-        ...form
-      }});
+      dispatch({ type: "users/ADD_USER_SAGA", payload: { ...form } });
     } else if (modalMode === "edit" && editingUser) {
-      dispatch({ type: "users/UPDATE_USER_SAGA", payload: {
-        ...editingUser,
-        ...form
-      }});
+      dispatch({ type: "users/UPDATE_USER_SAGA", payload: { ...editingUser, ...form } });
     }
     setShowModal(false);
     setEditingUser(null);
@@ -131,7 +85,10 @@ function UserListPage() {
   if (loading) {
     return (
       <div className="userlist-bg" style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <div className="loader">Loading...</div>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+          <div className="loader"></div>
+          <div style={{ marginTop: 16, color: "#1976d2", fontWeight: 500 }}>Loading...</div>
+        </div>
       </div>
     );
   }
